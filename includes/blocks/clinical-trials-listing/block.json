@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "clinical-trials-cpt/clinical-trials-listing",
+  "title": "Clinical Trials Listing",
+  "description": "Listing of all clinical trials, with filter options for date ranges",
+  "category": "embeds",
+  "icon": "admin-comments",
+  "version": "1.0.1",
+  "keywords": [
+    "clinical",
+    "trial",
+    "nursing",
+    "ucf",
+    "trials",
+    "list",
+    "listing",
+    "table",
+    "enroll",
+    "enrollment",
+    "open"
+  ],
+  "attributes": {
+    "blockText": {
+      "default": "Wholesome Plugin - hello from the editor!",
+      "type": "string"
+    }
+  },
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  }
+}

@@ -14,6 +14,7 @@ function create_post_type(): void
                 'add_new_item'  => __( 'Add Clinical Trial' ),
                 'edit_item'     => __( 'Edit Clinical Trial' )
             ),
+            'taxonomies'  => array( 'category' ),
             'supports'    => array( 'title', 'editor', 'revisions' ),
             'public'      => true,
             'show_ui'     => true,

@@ -2,12 +2,10 @@
 namespace clinical_trials_cpt\render;
 
 // get all posts that are open for enrollment
-$trials_open_for_enrollment = get_posts([
 
-    'post_type'      => 'clinical-trials',
-    'posts_per_page' => -1,
-    'meta_query' => array(
-        // limit to trials that are either marked as open, or are marked with a date range encompassing today's date
+$meta_query_open = array(
+    // limit to trials that are either marked as open, or are marked with a date range encompassing today's date
+    array(
         'relation'		=> 'OR',
         array(
             'key'		=> 'enrollment_status',
@@ -29,17 +27,12 @@ $trials_open_for_enrollment = get_posts([
                 'type'      => 'DATE'
             ),
         ),
-
     ),
-]);
-/* @var $trials_open_for_enrollment WP_Post[] */
+);
 
-// get all posts that are not open for enrollment
-$trials_closed_for_enrollment = get_posts([
-    'post_type'      => 'clinical-trials',
-    'posts_per_page' => -1,
-    'meta_query' => array(
-        // limit to trials that are either marked as closed, or are marked with a date range not encompassing today's date
+$meta_query_closed = array(
+    // limit to trials that are either marked as closed, or are marked with a date range not encompassing today's date
+    array(
         'relation'		=> 'OR',
         array(
             'key'		=> 'enrollment_status',
@@ -61,9 +54,37 @@ $trials_closed_for_enrollment = get_posts([
                 'type'      => 'DATE'
             ),
         ),
+    )
+);
 
-    ),
-]);
+
+
+$main_query_open = array(
+    'post_type'      => 'clinical-trials',
+    'posts_per_page' => -1,
+    'meta_query' => $meta_query_open,
+);
+$main_query_closed = array(
+    'post_type'      => 'clinical-trials',
+    'posts_per_page' => -1,
+    'meta_query' => $meta_query_closed,
+);
+
+// if block is filtering to specific posts by categories, then add
+// a condition to the meta query to only get those posts
+if (get_field('limit_trials_listing_to_specified_categories') && get_field('include_specified_categories')) {
+    $main_query_open['category__in'] = get_field('include_specified_categories');
+    $main_query_closed['category__in'] = get_field('include_specified_categories');
+}
+
+$query = new \WP_Query();
+$trials_open_for_enrollment = $query->query($main_query_open);
+/* @var $trials_open_for_enrollment WP_Post[] */
+
+$query = new \WP_Query();
+// get all posts that are not open for enrollment
+$trials_closed_for_enrollment = $query->query($main_query_closed);
+
 /* @var $trials_closed_for_enrollment WP_Post[] */
 
 if (!empty($trials_open_for_enrollment)) {
@@ -107,8 +128,10 @@ if (!empty($trials_open_for_enrollment)) {
     </div>
     ";
 } else {
-    echo "no open trials";
+    echo "<div>no open trials</div>";
 }
+
+
 if (!empty($trials_closed_for_enrollment)) {
     $accordion_content = "";
     foreach ($trials_closed_for_enrollment as $row_index=>$clinical_trial) {
@@ -151,5 +174,5 @@ if (!empty($trials_closed_for_enrollment)) {
     </div>
     ";
 } else {
-    echo "no closed trials";
+    echo "<div>no closed trials</div>";
 }

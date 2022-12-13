@@ -7,6 +7,14 @@ Plugin URI: https://github.com/hashbangcrash/clinical-trials
 Github Plugin URI: hashbangcrash/clinical-trials-cpt
 */
 
+
+/*
+ * @TODO
+ * * get accordion show/hide working
+ * * add fields to block so user can filter to a date range or a category
+ * * general css and layout
+ */
+
 namespace clinical_trials_cpt;
 
 if ( ! defined( 'WPINC' ) ) {

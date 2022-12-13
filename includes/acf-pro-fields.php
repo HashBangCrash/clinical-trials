@@ -21,6 +21,7 @@ function create_fields() {
     // check function exists
 
 
+    // fields for the custom post type
     if ( function_exists( 'acf_add_local_field_group' ) ) {
         acf_add_local_field_group(array(
             'key' => 'group_638661b5e84bf',
@@ -130,5 +131,82 @@ function create_fields() {
             'show_in_rest' => 0,
         ));
     }
+
+    // fields for the block editor
+    acf_add_local_field_group(array(
+        'key' => 'group_6398d8aa5140e',
+        'title' => 'clinical trial selector',
+        'fields' => array(
+            array(
+                'key' => 'field_6398d9571330c',
+                'label' => 'Limit trials listing to specified categories',
+                'name' => 'limit_trials_listing_to_specified_categories',
+                'aria-label' => '',
+                'type' => 'true_false',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 0,
+                'ui_on_text' => 'Show all trials',
+                'ui_off_text' => 'Limit by categories',
+                'ui' => 1,
+            ),
+            array(
+                'key' => 'field_6398d8ab1b6e3',
+                'label' => 'Include Specified Categories',
+                'name' => 'include_specified_categories',
+                'aria-label' => '',
+                'type' => 'taxonomy',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_6398d9571330c',
+                            'operator' => '==',
+                            'value' => '1',
+                        ),
+                    ),
+                ),
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'taxonomy' => 'category',
+                'add_term' => 0,
+                'save_terms' => 0,
+                'load_terms' => 0,
+                'return_format' => 'id',
+                'field_type' => 'checkbox',
+                'multiple' => 0,
+                'allow_null' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'block',
+                    'operator' => '==',
+                    'value' => 'clinical-trials-cpt/clinical-trials-listing',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+        'show_in_rest' => 0,
+    ));
 }
 

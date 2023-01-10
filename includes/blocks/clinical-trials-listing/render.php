@@ -123,7 +123,8 @@ if (!empty($trials_open_for_enrollment)) {
         ";
     }
     echo "
-    <div>
+    <div class='clinical-trials-listing clinical-trials-open clinical-trials-body mt-4 mb-4'>
+    <h2>Trials Open For Enrollment</h2>
         {$accordion_content}
     </div>
     ";
@@ -168,11 +169,14 @@ if (!empty($trials_closed_for_enrollment)) {
         ";
     }
     echo "
-    <div>
-    <h2>Closed</h2>
+    <div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4'>
+     <h2>Closed</h2>
         {$accordion_content}
     </div>
     ";
 } else {
-    echo "<div>no closed trials</div>";
+    echo "<div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4'>
+    <h2>Trials Closed For Enrollment</h2>
+    No currently closed trials.
+    </div>";
 }

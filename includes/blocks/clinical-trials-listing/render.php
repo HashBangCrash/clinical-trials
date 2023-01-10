@@ -129,7 +129,7 @@ if (!empty($trials_open_for_enrollment)) {
     </div>
     ";
 } else {
-    echo "<div>no open trials</div>";
+    echo "<div>No currently open trials.</div>";
 }
 
 

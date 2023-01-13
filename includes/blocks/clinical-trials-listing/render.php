@@ -91,9 +91,10 @@ if (!empty($trials_open_for_enrollment)) {
     $accordion_content = "";
     foreach ($trials_open_for_enrollment as $row_index=>$clinical_trial) {
 
+
         $fold_title = get_sub_field( 'title' );
         $fold_content = get_sub_field( 'content' );
-        $accordion_content = "
+        $accordion_content .= "
             <div class='card'>
                 <div class='card-header' id='heading-{$row_index}'>
                     <h2 class='mb-0'>
@@ -136,10 +137,9 @@ if (!empty($trials_open_for_enrollment)) {
 if (!empty($trials_closed_for_enrollment)) {
     $accordion_content = "";
     foreach ($trials_closed_for_enrollment as $row_index=>$clinical_trial) {
-
         $fold_title = get_sub_field( 'title' );
         $fold_content = get_sub_field( 'content' );
-        $accordion_content = "
+        $accordion_content .= "
             <div class='card'>
                 <div class='card-header' id='heading-{$row_index}'>
                     <h2 class='mb-0'>

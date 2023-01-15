@@ -95,11 +95,11 @@ if (!empty($trials_open_for_enrollment)) {
         $fold_title = get_sub_field( 'title' );
         $fold_content = get_sub_field( 'content' );
         $accordion_content .= "
-            <div class='card'>
-                <div class='card-header' id='heading-{$row_index}'>
+            <div class='card mb-4'>
+                <div class='card-success' id='heading-{$row_index}'>
                     <h2 class='mb-0'>
                         <button 
-                        class='btn btn-link btn-block text-left' 
+                        class='btn btn-success btn-block text-left dropdown-toggle' 
                         type='button' 
                         data-toggle='collapse' 
                         data-target='#collapse-{$row_index}' 
@@ -112,7 +112,7 @@ if (!empty($trials_open_for_enrollment)) {
         
                 <div 
                 id='collapse-{$row_index}' 
-                class='collapse show' 
+                class='collapse' 
                 aria-labelledby='heading-{$row_index}' 
                 data-parent='#accordionExample'
                 >
@@ -140,14 +140,14 @@ if (!empty($trials_closed_for_enrollment)) {
         $fold_title = get_sub_field( 'title' );
         $fold_content = get_sub_field( 'content' );
         $accordion_content .= "
-            <div class='card'>
-                <div class='card-header' id='heading-{$row_index}'>
+            <div class='card mb-4'>
+                <div class='card-warning' id='heading-{$row_index}'>
                     <h2 class='mb-0'>
                         <button 
-                        class='btn btn-link btn-block text-left' 
+                        class='btn btn-warning btn-block text-left dropdown-toggle' 
                         type='button' 
                         data-toggle='collapse' 
-                        data-target='#collapse-{$row_index}' 
+                        data-target='#collapse-c-{$row_index}' 
                         aria-expanded='true' aria-controls='collapse-{$row_index}'
                         >
                             {$clinical_trial->post_title}
@@ -156,8 +156,8 @@ if (!empty($trials_closed_for_enrollment)) {
                 </div>
         
                 <div 
-                id='collapse-{$row_index}' 
-                class='collapse show' 
+                id='collapse-c-{$row_index}' 
+                class='collapse' 
                 aria-labelledby='heading-{$row_index}' 
                 data-parent='#accordionExample'
                 >
@@ -170,13 +170,13 @@ if (!empty($trials_closed_for_enrollment)) {
     }
     echo "
     <div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4'>
-     <h2>Closed</h2>
+     <h2>Trials Opening Soon For Enrollment</h2>
         {$accordion_content}
     </div>
     ";
 } else {
     echo "<div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4'>
-    <h2>Trials Closed For Enrollment</h2>
+    <h2>Trials Opening Soon For Enrollment</h2>
     No currently closed trials.
     </div>";
 }

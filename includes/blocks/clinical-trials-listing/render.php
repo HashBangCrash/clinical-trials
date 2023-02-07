@@ -114,7 +114,7 @@ if (!empty($trials_open_for_enrollment)) {
                 id='collapse-{$row_index}' 
                 class='collapse' 
                 aria-labelledby='heading-{$row_index}' 
-                data-parent='#accordionExample'
+                data-parent='#accordion-open-trials'
                 >
                     <div class='card-body'>
                         {$clinical_trial->post_content}
@@ -124,7 +124,7 @@ if (!empty($trials_open_for_enrollment)) {
         ";
     }
     echo "
-    <div class='clinical-trials-listing clinical-trials-open clinical-trials-body mt-4 mb-4'>
+    <div class='clinical-trials-listing clinical-trials-open clinical-trials-body mt-4 mb-4' id='accordion-open-trials'>
     <h2>Trials Open For Enrollment</h2>
         {$accordion_content}
     </div>
@@ -159,7 +159,7 @@ if (!empty($trials_closed_for_enrollment)) {
                 id='collapse-c-{$row_index}' 
                 class='collapse' 
                 aria-labelledby='heading-{$row_index}' 
-                data-parent='#accordionExample'
+                data-parent='#accordion-closed-trials'
                 >
                     <div class='card-body'>
                         {$clinical_trial->post_content}
@@ -169,7 +169,7 @@ if (!empty($trials_closed_for_enrollment)) {
         ";
     }
     echo "
-    <div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4'>
+    <div class='clinical-trials-listing clinical-trials-closed clinical-trials-body mt-4 mb-4' id='accordion-closed-trials'>
      <h2>Trials Opening Soon For Enrollment</h2>
         {$accordion_content}
     </div>

@@ -6,7 +6,7 @@
   "description": "Listing of all clinical trials, with filter options for date ranges",
   "category": "embeds",
   "icon": "admin-comments",
-  "version": "1.0.1",
+  "version": "1.1",
   "keywords": [
     "clinical",
     "trial",
@@ -20,12 +20,6 @@
     "enrollment",
     "open"
   ],
-  "attributes": {
-    "blockText": {
-      "default": "Wholesome Plugin - hello from the editor!",
-      "type": "string"
-    }
-  },
   "acf": {
     "mode": "preview",
     "renderTemplate": "render.php"

@@ -41,9 +41,10 @@ function create_fields() {
                         'id' => '',
                     ),
                     'choices' => array(
-                        'date_range' => 'Use date range',
                         'open' => 'Open',
+                        'opening_soon' => 'Opening Soon',
                         'closed' => 'Closed',
+                        'date_range' => 'Use date range',
                     ),
                     'allow_null' => 0,
                     'other_choice' => 0,

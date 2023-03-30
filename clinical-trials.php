@@ -2,18 +2,13 @@
 /*
 Plugin Name: Clinical Trials Custom Post Type
 Description: Provides a Custom Post Type for Clinical Trials, to be used in the Nursing website
-Version: 1.0.3
+Version: 1.1
 Plugin URI: https://github.com/hashbangcrash/clinical-trials
 Github Plugin URI: hashbangcrash/clinical-trials-cpt
 */
 
 
-/*
- * @TODO
- * * get accordion show/hide working
- * * add fields to block so user can filter to a date range or a category
- * * general css and layout
- */
+
 
 namespace clinical_trials_cpt;
 

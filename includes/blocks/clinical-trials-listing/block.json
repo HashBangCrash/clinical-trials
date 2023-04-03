@@ -6,7 +6,7 @@
   "description": "Listing of all clinical trials, with filter options for date ranges",
   "category": "embeds",
   "icon": "admin-comments",
-  "version": "1.2",
+  "version": "1.2.1",
   "keywords": [
     "clinical",
     "trial",

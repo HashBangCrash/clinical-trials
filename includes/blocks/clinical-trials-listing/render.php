@@ -133,7 +133,7 @@ function generate_accordion($trials, $button_type, $class_type, $h2 ) {
                 aria-labelledby='heading-{$class_type}-{$row_index}' 
                 data-parent='#accordion-trials-{$class_type}'
                 >
-                    <div class='card-body'>
+                    <div class='card-body p-2'>
                         {$clinical_trial->post_content}
                     </div>
                 </div>
@@ -141,7 +141,7 @@ function generate_accordion($trials, $button_type, $class_type, $h2 ) {
         ";
 	}
 	return "
-    <div class='clinical-trials-listing clinical-trials-{$type} clinical-trials-body mt-4 mb-4' id='accordion-trials-{$type}'>
+    <div class='clinical-trials-listing clinical-trials-{$class_type} clinical-trials-body mt-4 mb-4' id='accordion-trials-{$class_type}'>
     <h2>{$h2}</h2>
         {$accordion_content}
     </div>

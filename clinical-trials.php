@@ -2,7 +2,7 @@
 /*
 Plugin Name: Clinical Trials Custom Post Type
 Description: Provides a Custom Post Type for Clinical Trials, to be used in the Nursing website
-Version: 1.1
+Version: 1.2
 Plugin URI: https://github.com/hashbangcrash/clinical-trials
 Github Plugin URI: hashbangcrash/clinical-trials-cpt
 */
@@ -26,18 +26,6 @@ add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\add_js' );
 
 // use parent theme styles without overwriting them
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_parent_styles' );
-
-// add bootstrap to create the js and css for accordions
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_bootstrap' );
-
-
-function enqueue_bootstrap(): void
-{
-    wp_enqueue_style('bootstrap-styles', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css');
-    wp_enqueue_style('bootstrap-styles', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css');
-    wp_enqueue_script( 'bootstrap-scripts','https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '', true );
-}
-
 
 function enqueue_parent_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );

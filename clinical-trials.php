@@ -2,7 +2,7 @@
 /*
 Plugin Name: Clinical Trials Custom Post Type
 Description: Provides a Custom Post Type for Clinical Trials, to be used in the Nursing website
-Version: 1.2.1
+Version: 1.3.0
 Plugin URI: https://github.com/hashbangcrash/clinical-trials
 Github Plugin URI: hashbangcrash/clinical-trials-cpt
 */
@@ -65,6 +65,3 @@ function uninstall(): void
 {
 
 }
-
-
-

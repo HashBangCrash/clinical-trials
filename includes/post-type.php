@@ -14,8 +14,7 @@ function create_post_type(): void
                 'add_new_item'  => __( 'Add Clinical Trial' ),
                 'edit_item'     => __( 'Edit Clinical Trial' )
             ),
-            'taxonomies'  => array( 'category' ),
-            'supports'    => array( 'title', 'editor', 'revisions' ),
+            'supports'    => array( 'title', 'editor', 'revisions', 'thumbnail'),
             'public'      => true,
             'show_ui'     => true,
             'show_in_menu' => true,
@@ -29,5 +28,19 @@ function create_post_type(): void
             ),
         )
     );
-}
 
+    register_taxonomy(
+        'clinical-trial-category',
+        array('clinical-trials'),
+        array('label' => __('Categories'),
+        'hierarchical' => true,
+		'rewrite' => array('slug' => 'clinical-trial-category'),
+		'show_admin_column' => true,
+		'show_in_rest' => true,
+		)
+    );
+    // good practice to explicitely register the taxonomy for the CPT after both are defined, even though
+    // the custom taxonomy specifies the post type to attach to
+    register_taxonomy_for_object_type('clinical-category', 'clinical-trials');
+
+}

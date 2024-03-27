@@ -3,6 +3,8 @@ namespace clinical_trials_cpt\render;
 
 // get all posts that are open for enrollment
 
+use const clinical_trials_cpt\post_type\custom_taxonomy;
+
 $meta_query_open = array(
     // limit to trials that are either marked as open, or are marked with a date range encompassing today's date
     array(
@@ -86,11 +88,16 @@ $main_query_closed = array(
 // if block is filtering to specific posts by categories, then add
 // a condition to the meta query to only get those posts
 if (get_field('limit_trials_listing_to_specified_categories') && get_field('include_specified_categories')) {
-    $main_query_open['category__in'] = get_field('include_specified_categories');
-	$main_query_opening_soon['category__in'] = get_field('include_specified_categories');
-	$main_query_closed['category__in'] = get_field('include_specified_categories');
+    $tax_query = array(
+        array(
+            'taxonomy' => custom_taxonomy,
+            'terms' => get_field('include_specified_categories'),
+        )
+    );
+    $main_query_open['tax_query'] = $tax_query;
+	$main_query_opening_soon['tax_query'] = $tax_query;
+	$main_query_closed['tax_query'] = $tax_query;
 }
-
 $query = new \WP_Query();
 // get all posts that are open for enrollment
 $trials_open_for_enrollment = $query->query($main_query_open);

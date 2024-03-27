@@ -38,3 +38,9 @@ Please file any issues in the GitHub repository.
 * Custom post type for clinical trials
 * Block for displaying clinical trial listing on the front-end
 * Option to limit trial listing to specified categories in the block editor
+
+### 1.4.0
+
+* Fix category whitelist
+* Add UCF Health template page to show acf fields on
+* If multisite, switch_to_blog to 1, as we only use the main site for trial info

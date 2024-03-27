@@ -1,6 +1,8 @@
 <?php
 namespace clinical_trials_cpt\post_type;
 
+const custom_taxonomy = "clinical-trial-category";
+
 add_action( 'init', __NAMESPACE__ . '\\create_post_type' );
 
 function create_post_type(): void
@@ -30,11 +32,11 @@ function create_post_type(): void
     );
 
     register_taxonomy(
-        'clinical-trial-category',
+        custom_taxonomy,
         array('clinical-trials'),
         array('label' => __('Categories'),
         'hierarchical' => true,
-		'rewrite' => array('slug' => 'clinical-trial-category'),
+		'rewrite' => array('slug' => custom_taxonomy),
 		'show_admin_column' => true,
 		'show_in_rest' => true,
 		)

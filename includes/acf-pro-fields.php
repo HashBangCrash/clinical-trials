@@ -8,9 +8,45 @@
  */
 
 namespace clinical_trials_cpt\acf_pro_fields;
+use const clinical_trials_cpt\post_type\custom_taxonomy;
 
 add_action( 'init', __NAMESPACE__ . '\\register_acf_blocks', 5 );
 add_action( 'acf/init', __NAMESPACE__ . '\\create_fields' );
+
+/**
+ * This overwrites the get_terms callback, if it detects that the ACF field trying to load the taxonomy terms is
+ * our specific field that we use on our block and our template.
+ * @param $terms
+ * @param $taxonomies
+ * @param $args
+ * @return int[]|mixed|string|string[]|\WP_Error|\WP_Term[]
+ *
+ */
+function overwrite_callback_taxonomy( $terms, $taxonomies, $args ) {
+    // adapted from https://support.advancedcustomfields.com/forums/topic/multi_select-taxonomy-from-other-blog/
+    if(in_array(custom_taxonomy, $taxonomies) && ($args['walker']->field['key'] == 'field_6398d8ab1b6e3')){
+        remove_action('get_terms', __NAMESPACE__ . '\\overwrite_callback_taxonomy', 20);
+
+        // modify the args if you want
+        $args['order'] = 'ASC';
+
+        //get it from other blog
+        switch_to_blog(1);
+        $terms = get_terms( custom_taxonomy, $args );
+        restore_current_blog();
+
+        add_filter('get_terms', __NAMESPACE__ . '\\overwrite_callback_taxonomy', 20, 3);
+    }
+    return $terms;
+}
+
+/*
+ * If this is a multisite, then add our filter to only use blog=1 taxonomy terms for our block or the horizontal ucf health news template
+ */
+if (is_multisite()) {
+    add_filter('get_terms', __NAMESPACE__ . '\\overwrite_callback_taxonomy', 20, 3);
+}
+
 
 function register_acf_blocks() {
     register_block_type( plugin_dir_path(__FILE__) . 'blocks/clinical-trials-listing/block.json' );
@@ -180,7 +216,7 @@ function create_fields() {
                     'class' => '',
                     'id' => '',
                 ),
-                'taxonomy' => 'category',
+                'taxonomy' => custom_taxonomy,
                 'add_term' => 0,
                 'save_terms' => 0,
                 'load_terms' => 0,
@@ -198,6 +234,13 @@ function create_fields() {
                     'value' => 'clinical-trials-cpt/clinical-trials-listing',
                 ),
             ),
+            array(
+                array(
+                    'param' => 'post_template',
+                    'operator' => '==',
+                    'value' => 'page-horizontal-ucfhealth.php',
+                ),
+            ),
         ),
         'menu_order' => 0,
         'position' => 'normal',
@@ -210,4 +253,3 @@ function create_fields() {
         'show_in_rest' => 0,
     ));
 }
-

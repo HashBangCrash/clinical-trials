@@ -44,3 +44,6 @@ Please file any issues in the GitHub repository.
 * Fix category whitelist
 * Add UCF Health template page to show acf fields on
 * If multisite, switch_to_blog to 1, as we only use the main site for trial info
+
+### 1.4.1
+* Fix multisite - only show post type on main site, but register taxonomy for subsites
